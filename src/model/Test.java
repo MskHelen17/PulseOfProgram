@@ -4,7 +4,12 @@ import java.util.ArrayList;
 
 public class Test {
     private int id;
-    private ArrayList<Integer> steps;
     int middleTime;
+    private ArrayList<Integer> steps;
 
+    public Test(int id, int middleTime, ArrayList<Integer> steps){
+        this.id = id;
+        this.middleTime = middleTime;
+        this.steps = steps;
+    }
 }

@@ -13,31 +13,90 @@ import java.io.FileWriter;
 import java.io.IOException;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamWriter;
+import javax.xml.stream.XMLStreamConstants;
 
 public class Data {
+
     private ArrayList<Task> tasks;
     private ArrayList<Button> buttons;
 
+    public Data(ArrayList<Task> tasks, ArrayList<Button> buttons){
+        this.tasks = tasks;
+        this.buttons = buttons;
+    }
     public void readXmlData(){
         final String fileName = "../TestData/data.xml";
 
         try {
             XMLStreamReader xmlr = XMLInputFactory.newInstance().createXMLStreamReader(fileName, new FileInputStream(fileName));
 
+            String tagName;
             while (xmlr.hasNext()) {
-                xmlr.next();
-                if (xmlr.isStartElement()) {
-                    System.out.println(xmlr.getLocalName());
-                } else if (xmlr.isEndElement()) {
-                    System.out.println("/" + xmlr.getLocalName());
-                } else if (xmlr.hasText() && xmlr.getText().trim().length() > 0) {
-                    System.out.println("   " + xmlr.getText());
+                int type = xmlr.next();
+
+                if(type == XMLStreamConstants.START_ELEMENT) {
+                    tagName = xmlr.getLocalName();
+                    switch (tagName) {
+                        case "button":
+                            int currentDemand = Integer.parseInt(xmlr.getAttributeValue(null, "demand"));
+                            String currentName = xmlr.getText();
+                            Button newButton = new Button(currentDemand, currentName);
+                            buttons.add(newButton);
+                            break;
+                        case "task":
+                            String currentTask = xmlr.getAttributeValue(null, "name");
+                            xmlr.next();
+                            ArrayList<Button> currentScenario = new ArrayList<>();
+                            if (new String("scenario").equals(xmlr.getLocalName())) {
+
+                                xmlr.next();
+                                while (new String("item").equals((xmlr.getLocalName()))) {
+                                    for (Button button : buttons) {
+                                        if (button.getName() == xmlr.getText()) {
+                                            currentScenario.add(button);
+                                        }
+                                    }
+                                    xmlr.next();    //item
+                                }
+                            }
+                            //сценарий считали
+
+                            xmlr.next();    //scenario
+                            ArrayList<Test> currentTests = new ArrayList<>();
+                            if (new String("test").equals(xmlr.getLocalName())) {
+                                int currentId = Integer.parseInt(xmlr.getAttributeValue(null, "id"));
+                                xmlr.next();
+                                if (new String("steps").equals(xmlr.getLocalName())) {
+                                    ArrayList<Integer> currentSteps = new ArrayList<>();
+                                    int currentMiddleTime = 0;
+                                    xmlr.next();
+                                    while (new String("time").equals(xmlr.getLocalName())) {
+                                        currentSteps.add(Integer.parseInt(xmlr.getText()));
+                                        currentMiddleTime += Integer.parseInt(xmlr.getText());
+                                        xmlr.next();    //time
+                                    }
+                                    xmlr.next();    //test
+                                    xmlr.next(); //task
+                                    currentMiddleTime = currentMiddleTime / currentSteps.size();
+                                    Test newTest = new Test(currentId, currentMiddleTime, currentSteps);
+                                    currentTests.add(newTest);
+                                }
+                            }
+                            //список тестов получили
+                            Task newTask = new Task(currentTask, currentScenario, currentTests);
+                            tasks.add(newTask);
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
+
         } catch (FileNotFoundException | XMLStreamException ex) {
             ex.printStackTrace();
         }
     }
+
     public void generateTestData(){
 
     }
