@@ -12,4 +12,12 @@ public class Test {
         this.middleTime = middleTime;
         this.steps = steps;
     }
+
+    public void print(){
+        System.out.print("Тест id="+id+", среднее время="+middleTime+", время шагов: ");
+        for(int time:steps){
+            System.out.print(time);
+        }
+        System.out.print("\n");
+    }
 }

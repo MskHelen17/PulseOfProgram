@@ -15,7 +15,6 @@ public class Common {
         ArrayList<Task> tasks = new ArrayList<Task>();
         ArrayList<Button> buttons = new ArrayList<Button>();
         Data newData = new Data(tasks, buttons);
-
         newData.readXmlData();
         //newData.writeXmlData();
     }

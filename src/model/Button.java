@@ -14,4 +14,7 @@ public class Button {
     public int getDemamd(){
         return this.demand;
     }
+    public void print(){
+        System.out.print("Кнопка \""+name+"\", востребованность "+demand+"\n");
+    }
 }

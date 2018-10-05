@@ -24,59 +24,78 @@ public class Data {
         this.tasks = tasks;
         this.buttons = buttons;
     }
+    public void print(){
+        System.out.println("Список тестируемых кнопок:");
+        for(Button button:buttons){
+            button.print();
+        }
+        System.out.println("Список Типовых задач(сценариев):");
+        for(Task task:tasks){
+            task.print();
+        }
+    }
     public void readXmlData(){
         final String fileName = "../TestData/data.xml";
 
         try {
-            XMLStreamReader xmlr = XMLInputFactory.newInstance().createXMLStreamReader(fileName, new FileInputStream(fileName));
+            XMLStreamReader reader = XMLInputFactory.newInstance().createXMLStreamReader(fileName, new FileInputStream(fileName));
 
             String tagName;
-            while (xmlr.hasNext()) {
-                int type = xmlr.next();
+            while (reader.hasNext()) {
+                reader.next();
 
-                if(type == XMLStreamConstants.START_ELEMENT) {
-                    tagName = xmlr.getLocalName();
+                if(reader.isStartElement()) {
+                    tagName = reader.getLocalName();
                     switch (tagName) {
                         case "button":
-                            int currentDemand = Integer.parseInt(xmlr.getAttributeValue(null, "demand"));
-                            String currentName = xmlr.getText();
+                            reader.next();
+                            String currentName  = reader.getText();
+                            reader.nextTag();
+                            int currentDemand = Integer.parseInt(reader.getElementText());
+
                             Button newButton = new Button(currentDemand, currentName);
                             buttons.add(newButton);
                             break;
                         case "task":
-                            String currentTask = xmlr.getAttributeValue(null, "name");
-                            xmlr.next();
+                            reader.next();
+                            String currentTask = "";
+                            if(("name").equals(reader.getName())) {
+                                currentTask = reader.getElementText();
+                            }
+                            reader.next();
                             ArrayList<Button> currentScenario = new ArrayList<>();
-                            if (new String("scenario").equals(xmlr.getLocalName())) {
-
-                                xmlr.next();
-                                while (new String("item").equals((xmlr.getLocalName()))) {
+                            if (("scenario").equals(reader.getLocalName())) {
+                                reader.next();
+                                while (("item").equals((reader.getName()))) {
                                     for (Button button : buttons) {
-                                        if (button.getName() == xmlr.getText()) {
+                                        if (button.getName() == reader.getElementText()) {
                                             currentScenario.add(button);
                                         }
                                     }
-                                    xmlr.next();    //item
+                                    reader.next();    //item
                                 }
                             }
                             //сценарий считали
 
-                            xmlr.next();    //scenario
+                            reader.next();    //scenario
                             ArrayList<Test> currentTests = new ArrayList<>();
-                            if (new String("test").equals(xmlr.getLocalName())) {
-                                int currentId = Integer.parseInt(xmlr.getAttributeValue(null, "id"));
-                                xmlr.next();
-                                if (new String("steps").equals(xmlr.getLocalName())) {
+                            if (("test").equals(reader.getName())) {
+                                int currentId = 0;
+                                if(("id").equals(reader.getName())) {
+                                    currentId = Integer.parseInt(reader.getElementText());
+                                }
+                                reader.next();
+                                if (("steps").equals(reader.getLocalName())) {
                                     ArrayList<Integer> currentSteps = new ArrayList<>();
                                     int currentMiddleTime = 0;
-                                    xmlr.next();
-                                    while (new String("time").equals(xmlr.getLocalName())) {
-                                        currentSteps.add(Integer.parseInt(xmlr.getText()));
-                                        currentMiddleTime += Integer.parseInt(xmlr.getText());
-                                        xmlr.next();    //time
+                                    reader.next();
+                                    while (("time").equals(reader.getName())) {
+                                        currentSteps.add(Integer.parseInt(reader.getElementText()));
+                                        currentMiddleTime += Integer.parseInt(reader.getElementText());
+                                        reader.next();    //time
                                     }
-                                    xmlr.next();    //test
-                                    xmlr.next(); //task
+                                    reader.next();    //test
+                                    reader.next(); //task
                                     currentMiddleTime = currentMiddleTime / currentSteps.size();
                                     Test newTest = new Test(currentId, currentMiddleTime, currentSteps);
                                     currentTests.add(newTest);
@@ -95,6 +114,7 @@ public class Data {
         } catch (FileNotFoundException | XMLStreamException ex) {
             ex.printStackTrace();
         }
+        this.print();
     }
 
     public void generateTestData(){
