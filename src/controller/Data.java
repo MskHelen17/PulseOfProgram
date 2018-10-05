@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Random;
 import model.Button;
 import model.Task;
 import model.Test;
@@ -25,14 +26,17 @@ public class Data {
         this.buttons = buttons;
     }
     public void print(){
+        System.out.println("__________________________");
         System.out.println("Список тестируемых кнопок:");
         for(Button button:buttons){
             button.print();
         }
+        System.out.println("________________________________");
         System.out.println("Список Типовых задач(сценариев):");
         for(Task task:tasks){
             task.print();
         }
+        System.out.println();
     }
     public void readXmlData(){
         final String fileName = "../TestData/data.xml";
@@ -48,54 +52,67 @@ public class Data {
                     tagName = reader.getLocalName();
                     switch (tagName) {
                         case "button":
-                            reader.next();
-                            String currentName  = reader.getText();
                             reader.nextTag();
-                            int currentDemand = Integer.parseInt(reader.getElementText());
-
+                            reader.next();
+                            String currentName = "";
+                            if(reader.hasText())
+                                currentName = reader.getText();
+                            reader.nextTag();
+                            reader.nextTag();
+                            reader.next();
+                            int currentDemand = 0;
+                            if(reader.hasText())
+                                currentDemand = Integer.parseInt(reader.getText());
                             Button newButton = new Button(currentDemand, currentName);
                             buttons.add(newButton);
                             break;
                         case "task":
+                            reader.nextTag();
                             reader.next();
                             String currentTask = "";
-                            if(("name").equals(reader.getName())) {
-                                currentTask = reader.getElementText();
+                            if(reader.hasText()) {
+                                currentTask = reader.getText();
                             }
-                            reader.next();
+                            reader.nextTag();
+                            reader.nextTag();;
                             ArrayList<Button> currentScenario = new ArrayList<>();
                             if (("scenario").equals(reader.getLocalName())) {
-                                reader.next();
-                                while (("item").equals((reader.getName()))) {
+                                reader.nextTag();
+                                while (("item").equals((reader.getLocalName()))) {
+                                    reader.next();
                                     for (Button button : buttons) {
-                                        if (button.getName() == reader.getElementText()) {
+                                        if (button.getName().equals(reader.getText())) {
                                             currentScenario.add(button);
                                         }
                                     }
-                                    reader.next();    //item
+                                    reader.nextTag();
+                                    reader.nextTag();
                                 }
                             }
                             //сценарий считали
 
-                            reader.next();    //scenario
+                            reader.nextTag();
                             ArrayList<Test> currentTests = new ArrayList<>();
-                            if (("test").equals(reader.getName())) {
-                                int currentId = 0;
-                                if(("id").equals(reader.getName())) {
-                                    currentId = Integer.parseInt(reader.getElementText());
-                                }
+                            if (("test").equals(reader.getLocalName())) {
+                                reader.nextTag();
                                 reader.next();
+                                int currentId = 0;
+                                if(reader.hasText()) {
+                                    currentId = Integer.parseInt(reader.getText());
+                                }
+                                reader.nextTag();
+                                reader.nextTag();
                                 if (("steps").equals(reader.getLocalName())) {
                                     ArrayList<Integer> currentSteps = new ArrayList<>();
                                     int currentMiddleTime = 0;
-                                    reader.next();
-                                    while (("time").equals(reader.getName())) {
-                                        currentSteps.add(Integer.parseInt(reader.getElementText()));
-                                        currentMiddleTime += Integer.parseInt(reader.getElementText());
-                                        reader.next();    //time
+                                    reader.nextTag();
+                                    while (("time").equals(reader.getLocalName())) {
+                                        reader.next();
+                                        currentSteps.add(Integer.parseInt(reader.getText()));
+                                        currentMiddleTime += Integer.parseInt(reader.getText());
+                                        reader.nextTag();
+                                        reader.nextTag();
                                     }
-                                    reader.next();    //test
-                                    reader.next(); //task
                                     currentMiddleTime = currentMiddleTime / currentSteps.size();
                                     Test newTest = new Test(currentId, currentMiddleTime, currentSteps);
                                     currentTests.add(newTest);
@@ -114,11 +131,24 @@ public class Data {
         } catch (FileNotFoundException | XMLStreamException ex) {
             ex.printStackTrace();
         }
-        this.print();
     }
 
-    public void generateTestData(){
-
+    public void generateTestData(int n){
+        for(Task task:tasks){
+            ArrayList<Test> generateTestData = new ArrayList<>();
+            for(int i=0; i<n; i++){
+                int id = i;
+                int m = task.getScenario().size()-1;
+                ArrayList<Integer> generateTime = new ArrayList<>();
+                int middleTime = 0;
+                for(int j=0; j<m; j++)
+                    generateTime.add((int)(Math.random()*10));
+                middleTime = middleTime/m;
+                Test generatedTest = new Test(id,middleTime,generateTime);
+                generateTestData.add(generatedTest);
+            }
+        }
+        this.print();
     }
     public void writeXmlData(){
         try {
