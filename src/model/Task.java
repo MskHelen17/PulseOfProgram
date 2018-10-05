@@ -22,11 +22,14 @@ public class Task {
         this.tests = newTests;
     }
     public void print(){
+        System.out.println();
+        System.out.println("***********************");
         System.out.println("Сценарий \""+name+"\": ");
         for(Button button:scenario){
             button.print();
         }
         System.out.print("Список тестов: ");
+        System.out.println();
         if(tests.size()==0) System.out.println("null");
         for(Test test:tests){
             test.print();

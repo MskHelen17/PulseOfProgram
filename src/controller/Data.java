@@ -31,11 +31,13 @@ public class Data {
         for(Button button:buttons){
             button.print();
         }
+
         System.out.println("________________________________");
         System.out.println("Список Типовых задач(сценариев):");
         for(Task task:tasks){
             task.print();
         }
+        System.out.println();
         System.out.println();
     }
     public void readXmlData(){
@@ -135,18 +137,22 @@ public class Data {
 
     public void generateTestData(int n){
         for(Task task:tasks){
-            ArrayList<Test> generateTestData = new ArrayList<>();
+            ArrayList<Test> generatedTestData = new ArrayList<>();
             for(int i=0; i<n; i++){
                 int id = i;
                 int m = task.getScenario().size()-1;
-                ArrayList<Integer> generateTime = new ArrayList<>();
+                ArrayList<Integer> generatedSteps = new ArrayList<>();
                 int middleTime = 0;
-                for(int j=0; j<m; j++)
-                    generateTime.add((int)(Math.random()*10));
+                for(int j=0; j<m; j++) {
+                    int generatedTime = (int) (Math.random() * 10 + 1);
+                    generatedSteps.add(generatedTime);
+                    middleTime+=generatedTime;
+                }
                 middleTime = middleTime/m;
-                Test generatedTest = new Test(id,middleTime,generateTime);
-                generateTestData.add(generatedTest);
+                Test generatedTest = new Test(id,middleTime,generatedSteps);
+                generatedTestData.add(generatedTest);
             }
+            task.setTests(generatedTestData);
         }
         this.print();
     }
