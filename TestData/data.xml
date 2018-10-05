@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--Тест Данные тестирования интерфейса Microsoft Office Word-->
+<data>
+  
+   <!--Описание кнопок, которые использовались во время тестов-->
+    <buttons>
+		<button>
+            <name>Рабочая область</name>
+            <demand>12</demand>
+        </button>
+		<button>
+            <name>Щелчок правой кнопкой мыши</name>
+            <demand>12</demand>
+		</button>
+        <button>
+          <name>Стили</name>
+          <demand>12</demand>
+       </button>
+        <button>
+            <name>Создать стиль</name>
+            <demand>12</demand>
+        </button>
+        <button>
+            <name>Изменить</name>
+            <demand>12</demand>
+        </button>
+        <button>
+            <name>Абзац</name>
+            <demand>12</demand>
+        </button>
+        <button>
+            <name>Отступы и интервалы</name>
+            <demand>12</demand>
+        </button>
+        <button>
+            <name>Положение на странице</name>
+            <demand>12</demand>
+        </button>
+        <button>
+            <name>Табуляцияы</name>
+            <demand>12</demand>
+        </button>
+        <button>
+            <name>Макет</name>
+            <demand>12</demand>
+        </button>
+        <button>
+            <name>Размер</name>
+            <demand>12</demand>
+        </button>
+        <button>
+            <name>Другие размеры бумаги</name>
+            <demand>12</demand>
+        </button>
+        <button>
+            <name>Источник бумаги</name>
+            <demand>12</demand>
+        </button>
+        <button>
+            <name>Нумерация строк</name>
+            <demand>12</demand>
+        </button>
+        <button>
+            <name>Границы</name>
+            <demand>12</demand>
+        </button>
+        <button>
+            <name>Параметры печати</name>
+            <demand>12</demand>
+        </button>
+    </buttons>
+    
+    
+    <!--Описание типовых задач/сценариев, по которым тестировался интерфейс-->
+	<tasks>
+		<task>
+		    <name>Task 1</name>
+			<scenario>
+				<item>Рабочая область</item>
+				<item>Щелчок правой кнопкой мыши</item>
+				<item>Стили</item>
+				<item>Создать стиль</item>
+				<item>Изменить</item>
+			</scenario>
+            <test>
+                <id>1</id>
+                <steps>
+                    <time>2</time>
+                    <time>3</time>
+                </steps>    <!--Время между пунктами сценария-->
+            </test> 
+		</task> 
+		<task>
+		    <name>Task 2</name>
+			<scenario>
+				<item>Рабочая область</item>
+				<item>Щелчок правой кнопкой мыши</item>
+				<item>Абзац</item>
+				<item>Положение на странице</item>
+			</scenario>  
+		</task>   
+		<task>
+            <name>Task 3</name>
+			<scenario>
+				<item>Рабочая область</item>
+				<item>Щелчок правой кнопкой мыши</item>
+				<item>Абзац</item>
+				<item>Отступы и интервалы</item>
+			</scenario>
+		</task>
+		<task>
+		    <name>Task 4</name>
+			<scenario>
+				<item>Рабочая область</item>
+				<item>Щелчок правой кнопкой мыши</item>
+				<item>Абзац</item>
+				<item>Табуляция</item>
+			</scenario>  
+		</task>
+		<task>
+		    <name>Task 5</name>
+			<scenario>
+				<item>Макет</item>
+				<item>Размер</item>
+				<item>Другие размеры бумаги</item>
+				<item>Источник бумаги</item>
+			</scenario>    
+		</task>
+		<task>
+		    <name>Task 6</name>
+			<scenario>
+				<item>Макет</item>
+				<item>Размер</item>
+				<item>Другие размеры бумаги</item>
+				<item>Параметры печати</item>
+			</scenario>   
+		</task>
+	</tasks>
+</data>
