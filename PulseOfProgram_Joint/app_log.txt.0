@@ -1,0 +1,123 @@
+окт 18, 2018 10:22:29 PM Controller.Data readXmlData
+INFO: Начинается прочитывание файла
+окт 18, 2018 10:22:30 PM Controller.Data readXmlData
+INFO: Файл успешно прочитан
+окт 18, 2018 10:22:30 PM PulseOfProgram.Pulse main
+INFO: Запуск программы пользователем Alex
+окт 18, 2018 10:22:39 PM PulseOfProgram.Pulse main
+INFO: Завершение программы
+окт 19, 2018 7:17:51 AM Controller.Data readXmlData
+INFO: Начинается прочитывание файла
+окт 19, 2018 7:17:51 AM Controller.Data readXmlData
+INFO: Файл успешно прочитан
+окт 19, 2018 7:17:51 AM PulseOfProgram.Pulse main
+INFO: Запуск программы пользователем Alex
+окт 19, 2018 7:18:01 AM PulseOfProgram.Pulse main
+INFO: Завершение программы
+окт 19, 2018 7:18:48 AM Controller.Data readXmlData
+INFO: Начинается прочитывание файла
+окт 19, 2018 7:18:48 AM Controller.Data readXmlData
+INFO: Файл успешно прочитан
+окт 19, 2018 7:18:48 AM PulseOfProgram.Pulse main
+INFO: Запуск программы пользователем Alex
+окт 19, 2018 7:19:09 AM Controller.Data readXmlData
+INFO: Начинается прочитывание файла
+окт 19, 2018 7:19:09 AM Controller.Data readXmlData
+INFO: Файл успешно прочитан
+окт 19, 2018 7:19:37 AM PulseOfProgram.Pulse main
+INFO: Завершение программы
+окт 19, 2018 7:20:30 AM Controller.Data readXmlData
+INFO: Начинается прочитывание файла
+окт 19, 2018 7:20:30 AM Controller.Data readXmlData
+INFO: Файл успешно прочитан
+окт 19, 2018 7:20:30 AM PulseOfProgram.Pulse main
+INFO: Запуск программы пользователем Alex
+окт 19, 2018 7:21:50 AM Controller.Data readXmlData
+INFO: Начинается прочитывание файла
+окт 19, 2018 7:24:12 AM Controller.Data readXmlData
+INFO: Файл успешно прочитан
+окт 19, 2018 7:24:18 AM Controller.Data readXmlData
+INFO: Начинается прочитывание файла
+окт 19, 2018 7:24:18 AM Controller.Data readXmlData
+INFO: Файл успешно прочитан
+окт 19, 2018 7:24:18 AM PulseOfProgram.Pulse main
+INFO: Запуск программы пользователем Alex
+окт 19, 2018 7:24:30 AM PulseOfProgram.Pulse main
+INFO: Завершение программы
+окт 19, 2018 7:30:43 AM Controller.Data readXmlData
+INFO: Начинается прочитывание файла
+окт 19, 2018 7:30:44 AM Controller.Data readXmlData
+INFO: Файл успешно прочитан
+окт 19, 2018 7:30:44 AM PulseOfProgram.Pulse main
+INFO: Запуск программы пользователем Alex
+окт 19, 2018 7:31:01 AM PulseOfProgram.Pulse main
+INFO: Завершение программы
+окт 19, 2018 7:35:48 AM Controller.Data readXmlData
+INFO: Начинается прочитывание файла "TestData/data.xml"
+окт 19, 2018 7:35:48 AM Controller.Data readXmlData
+INFO: Файл "TestData/data.xml" успешно прочитан
+окт 19, 2018 7:35:48 AM PulseOfProgram.Pulse main
+INFO: Запуск программы пользователем Alex
+окт 19, 2018 7:35:54 AM Controller.Data writeXmlData
+INFO: Начинается запись файла "TestData/generatedData.xml"
+окт 19, 2018 7:35:54 AM Controller.Data writeXmlData
+INFO: Файл "TestData/generatedData.xml" успешно записан
+окт 19, 2018 7:37:02 AM PulseOfProgram.Pulse main
+INFO: Завершение программы
+окт 19, 2018 7:37:06 AM Controller.Data readXmlData
+INFO: Начинается прочитывание файла "TestData/data.xml"
+окт 19, 2018 7:37:06 AM Controller.Data readXmlData
+INFO: Файл "TestData/data.xml" успешно прочитан
+окт 19, 2018 7:37:06 AM PulseOfProgram.Pulse main
+INFO: Запуск программы пользователем Alex
+окт 19, 2018 7:37:31 AM Controller.Data readXmlData
+INFO: Начинается прочитывание файла "/TestData/generatedData.xml"
+окт 19, 2018 7:37:31 AM Controller.Data readXmlData
+SEVERE: Ошибка прочтения файла "/TestData/generatedData.xml", Exception: 
+java.io.FileNotFoundException: \TestData\generatedData.xml (Системе не удается найти указанный путь)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at Controller.Data.readXmlData(Data.java:49)
+	at Controller.Main.switchMenu(Main.java:86)
+	at PulseOfProgram.Pulse.main(Pulse.java:65)
+
+окт 19, 2018 7:37:31 AM Controller.Data readXmlData
+INFO: Файл "/TestData/generatedData.xml" успешно прочитан
+окт 19, 2018 7:38:22 AM Controller.Data readXmlData
+INFO: Начинается прочитывание файла "TestData/data.xml"
+окт 19, 2018 7:38:22 AM Controller.Data readXmlData
+INFO: Файл "TestData/data.xml" успешно прочитан
+окт 19, 2018 7:38:22 AM PulseOfProgram.Pulse main
+INFO: Запуск программы пользователем Alex
+окт 19, 2018 7:38:54 AM Controller.Data readXmlData
+INFO: Начинается прочитывание файла "TestData/generatedData.xml"
+окт 19, 2018 7:38:54 AM Controller.Data readXmlData
+INFO: Файл "TestData/generatedData.xml" успешно прочитан
+окт 19, 2018 7:40:49 AM Controller.Data readXmlData
+INFO: Начинается прочитывание файла "TestData/data.xml"
+окт 19, 2018 7:40:56 AM Controller.Data readXmlData
+INFO: Файл "TestData/data.xml" успешно прочитан
+окт 19, 2018 7:41:00 AM PulseOfProgram.Pulse main
+INFO: Запуск программы пользователем Alex
+окт 19, 2018 7:41:27 AM Controller.Data readXmlData
+INFO: Начинается прочитывание файла "TestData/data.xml"
+окт 19, 2018 7:41:27 AM Controller.Data readXmlData
+INFO: Файл "TestData/data.xml" успешно прочитан
+окт 19, 2018 7:41:27 AM PulseOfProgram.Pulse main
+INFO: Запуск программы пользователем Alex
+окт 19, 2018 7:41:59 AM Controller.Data readXmlData
+INFO: Начинается прочитывание файла "TestData/generatedData.xml"
+окт 19, 2018 7:47:20 AM Controller.Data readXmlData
+INFO: Файл "TestData/generatedData.xml" успешно прочитан
+окт 19, 2018 7:47:25 AM Controller.Data readXmlData
+INFO: Начинается прочитывание файла "TestData/data.xml"
+окт 19, 2018 7:47:26 AM Controller.Data readXmlData
+INFO: Файл "TestData/data.xml" успешно прочитан
+окт 19, 2018 7:47:26 AM PulseOfProgram.Pulse main
+INFO: Запуск программы пользователем Alex
+окт 19, 2018 7:47:40 AM Controller.Data readXmlData
+INFO: Начинается прочитывание файла "TestData/generatedData.xml"
+окт 19, 2018 7:47:40 AM Controller.Data readXmlData
+INFO: Файл "TestData/generatedData.xml" успешно прочитан
