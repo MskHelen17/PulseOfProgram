@@ -102,6 +102,12 @@ public class Main {
                     //Data data = new Data(modelTask, modelButton);
                     data.generateTestData(generatedTestDataFilePath,countOfTests);
                     break;
+                case 7:
+                    if (isRoot == false) {
+                        throw new NumberFormatException();
+                    }
+                    data.deleteSomeData(countOfTests);
+                    break;
                 default:
                     throw new NumberFormatException();
             }

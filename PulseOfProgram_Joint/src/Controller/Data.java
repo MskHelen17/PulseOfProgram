@@ -96,6 +96,7 @@ public class Data {
                             //сценарий считали
 
                             reader.nextTag();
+
                             ArrayList<Test> currentTests = new ArrayList<>();
                             while (("test").equals((reader.getLocalName()))) {
                                 reader.nextTag();
@@ -145,30 +146,6 @@ public class Data {
             log.info("Файл \"" + fileName + "\" успешно прочитан");
         }
     }
-
-    public void generateTestData(String fileName, int countOfTests){
-        for(Task task:tasks){
-            ArrayList<Test> generatedTestData = new ArrayList();
-            for(int i = 0; i< countOfTests; i++){
-                int id = i;
-                int m = task.getScenario().size()-1;
-                ArrayList<Integer> generatedSteps = new ArrayList();
-                int middleTime = 0;
-                for(int j=0; j<m; j++) {
-                    int generatedTime = (int) (Math.random() * 10 + 1);
-                    generatedSteps.add(generatedTime);
-                    middleTime+=generatedTime;
-                }
-                middleTime = middleTime/m;
-                Test generatedTest = new Test(id,middleTime,generatedSteps);
-                generatedTestData.add(generatedTest);
-            }
-            task.setTests(generatedTestData);
-        }
-        this.print();
-        this.writeXmlData(fileName);
-    }
-
     public void writeXmlData(String filename){
         if (Main.isLoggingOn()) {
             log.info("Начинается запись файла \"" + filename + "\"");
@@ -232,4 +209,81 @@ public class Data {
             log.info("Файл \"" + filename + "\" успешно записан");
         }
     }
+    public void generateTestData(String fileName, int countOfTests){
+        for(Task task:tasks) {
+            ArrayList<Test> generatedTestData = new ArrayList();
+            for (int i = 0; i < countOfTests; i++) {
+                int id = i;
+                int m = task.getScenario().size() - 1;
+                ArrayList<Integer> generatedSteps = new ArrayList();
+                int middleTime = 0;
+                for (int j = 0; j < m; j++) {
+                    int generatedTime = (int) (Math.random() * 10 + 1);
+                    generatedSteps.add(generatedTime);
+                    middleTime += generatedTime;
+                }
+                middleTime = middleTime / m;
+                Test generatedTest = new Test(id, middleTime, generatedSteps);
+                generatedTestData.add(generatedTest);
+
+            }
+            task.setTests(generatedTestData);
+        }
+        this.print();
+        this.writeXmlData(fileName);
+    }
+    public ArrayList<Test> generateSomeData(int countOfTests){  //Удалить после 4 лабы
+
+        String text = "ArrayList<Test> Add\n";
+        long time = 0;
+        ArrayList<Test> generatedTestArray = new ArrayList();
+        for (int i = 0; i < countOfTests; i++) {
+            int id = i;
+            int m = tasks.get(0).getScenario().size() - 1;
+            ArrayList<Integer> generatedSteps = new ArrayList();
+            int middleTime = 0;
+            for (int j = 0; j < m; j++) {
+                int generatedTime = (int) (Math.random() * 10 + 1);
+                generatedSteps.add(generatedTime);
+                middleTime += generatedTime;
+            }
+            middleTime = middleTime / m;
+            Test generatedTest = new Test(id, middleTime, generatedSteps);
+            long startTime = System.nanoTime();
+            generatedTestArray.add(generatedTest);
+            long estimatedTime = System.nanoTime() - startTime;
+            time += estimatedTime;
+            text += "add, id = " + generatedTest.getId() + ", time = " + estimatedTime + "\n";
+        }
+        text += "addTotalCount = " + countOfTests + "\n";
+        text += "addTotalTime = " + time + "\n";
+        text += "addMedianTime = " + time / countOfTests + "\n";
+        log.info(text);
+        return generatedTestArray;
+    }
+    public void deleteSomeData(int countOfTests){       //Удалить после 4 лабы
+
+        ArrayList<Test> testArray = this.generateSomeData(countOfTests);
+        if(testArray.size() > 0) {
+            String text = "ArrayList<Test> Remove\n";
+            long time = 0;
+            int count = (int) Math.round(countOfTests * 0.1);
+            for (int i = 0; i < count; i++) {
+                int generatedId = (int) (Math.random() * (countOfTests-i));
+                long startTime = System.nanoTime();
+                testArray.remove(generatedId);
+                long estimatedTime = System.nanoTime() - startTime;
+                time += estimatedTime;   //Удалить после 4 лабы
+                text += "remove, id = " + generatedId + ", time = " + estimatedTime  + "\n";
+            }
+            text += "removeTotalCount = " + count + "\n";
+            text += "removeTotalTime = " + time + "\n";
+            text += "removeMedianTime = " + time / count + "\n";
+            log.info(text);
+        }
+
+
+    }
+
+
 }

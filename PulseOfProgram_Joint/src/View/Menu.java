@@ -17,6 +17,7 @@ public class Menu {
         menuItems.put(4, "Выход");
         menuItems.put(5, "Отладка");
         menuItems.put(6, "Сгенериировать новые тест данные");
+        menuItems.put(7, "Генерация ArrayList<Test> и удаление из него 10% эл (для 4 лабы)");
     }
 
     //приветствие пользователя
@@ -29,6 +30,7 @@ public class Menu {
         if (!isRoot) {
             menuItems.remove(5);
             menuItems.remove(6);
+            menuItems.remove(7);
         }
 
         System.out.println("\nМеню:");
