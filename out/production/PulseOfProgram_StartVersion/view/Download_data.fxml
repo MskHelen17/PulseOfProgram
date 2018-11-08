@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.DownloadData" prefHeight="400.0" prefWidth="600.0">
+    <Label text="Загрузить тест данные" styleClass="h1"/>
+    <HBox>
+        <Label text="Файл должен быть в формате XML и соответствовать " styleClass="p"/>
+        <Label text="стандарту" styleClass="link, p" onMouseClicked="#showStandart"/>
+    </HBox>
+    <HBox styleClass="downloadBlock">
+        <TextField fx:id="fileName" styleClass="fileName"/>
+        <Button text="Обзор" styleClass="chooseFile" onAction="#download"/>
+    </HBox>
+    <Label text=" " fx:id="result_field" styleClass="warning_field, p"/>
+</VBox>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.GenerateData" prefHeight="400.0" prefWidth="600.0" fx:id="content">
+    <Label text="Сгенерировать тест данные" styleClass="h1"/>
+    <VBox fx:id="numBlock">
+    <HBox>
+        <Label text="Тестовые данные будут сгенерированы на основе " styleClass="p"/>
+        <Label text="шаблона" styleClass="link, p" onMouseClicked="#showStandart"/>
+    </HBox>
+    <Label text="Для генерации тест данных введите число тестов ниже и нажмите &#34;Готово&#34;" styleClass="p"/>
+    <HBox styleClass="numForm">
+        <Label text="Кол-во тестов:" styleClass="p"/>
+        <TextField fx:id="num_of_tests" styleClass="num_field"/>
+        <Label text=" " styleClass="warning_field, p" fx:id="warning_field"/>
+    </HBox>
+    <Button text="Готово" onAction="#submit" styleClass="submit"/>
+    </VBox>
+    <VBox  fx:id="directoryBlock" >
+        <Label text="Выберите директорию, в которую будет сохранен файл" styleClass="p"/>
+        <HBox styleClass="downloadBlock">
+            <TextField fx:id="directoryName" styleClass="fileName"/>
+            <Button text="Обзор" styleClass="chooseFile" onAction="#download"/>
+        </HBox>
+        <Label text=" " fx:id="result_field" styleClass="warning_field, p"/>
+    </VBox>
+</VBox>

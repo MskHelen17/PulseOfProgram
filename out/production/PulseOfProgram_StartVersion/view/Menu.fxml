@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<HBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.Menu" styleClass="window" >
+    <VBox styleClass="menu" fx:id="menu">
+        <Button text="Тест данные" styleClass="menu_title"/>
+            <Button text="Сводка (вывод всех)" styleClass="menu_item"  fx:id="third_item" onAction="#pressedThird"/>
+            <Button text="Загрузить из файла" styleClass="menu_item" fx:id="fourth_item" onAction="#pressedFourth"/>
+            <Button text="Сгенерировать новые" styleClass="menu_item" fx:id="fifth_item" onAction="#pressedFifth"/>
+
+        <Button text="Визуализация" styleClass="menu_title"/>
+            <Button text="Востребованность эл." styleClass="menu_item" fx:id="first_item" onAction="#pressedFirst"/>
+            <Button text="Время тестирования" styleClass="menu_item" fx:id="second_item" onAction="#pressedSecond"/>
+
+        <Button  text="Прочее" styleClass="menu_title" fx:id="other_title"/>
+            <Button text="Автотесты" styleClass="menu_item" fx:id="seventh_item" onAction="#pressedSeventh"/>
+            <Button text="Отладка" styleClass="menu_item" fx:id="sixth_item" onAction="#pressedSixth"/>
+
+    </VBox>
+    <VBox styleClass="content" fx:id="content" >
+        <Label text="Советы по работе с программой" styleClass="h1"/>
+        <Label text="Для начала работы выберите пункт меню &#34;Тест Данные -> Загрузить из файла&#34;" styleClass="p"/>
+        <Label text="Следуйте инструкции и загрузите свой xml с тест данными" styleClass="p"/>
+        <Label text="Теперь вы можете воспользоваться пунктами меню:" styleClass="p"/>
+        <Label text="    • Тест данные -> Сводка" styleClass="p"/>
+        <Label text="    • Визуализация -> Востребованность элементов" styleClass="p"/>
+        <Label text="    • Визуализация -> Время тестирования" styleClass="p"/>
+        <Label text="Визуализация составит схему ваших тест данных в виде графовой структуры, по ней вы сможете определить слабые места в интерфейсе вашего приложения" styleClass="p"/>
+    </VBox>
+</HBox>
+

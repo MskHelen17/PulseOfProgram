@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.Login" styleClass="window_login" >
+    <Text text="Добро пожаловать!&#10;" styleClass="text_title"/>
+    <TextField text="Пароль администратора" fx:id="password_field" focusTraversable="false" onMouseClicked="#focusField" onKeyPressed="#submit"/>
+    <HBox styleClass="two_buttons">
+        <Button text="Пропустить" id="skip_btn" onAction="#skipLogin"/>
+        <Button text="Ок" id="ok_btn" onAction="#tryToLogin"/>
+    </HBox>
+</VBox>
+
